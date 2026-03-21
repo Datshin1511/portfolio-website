@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-accent: #c9a84c;
+  --color-accent-dim: rgba(201, 168, 76, 0.12);
+  --color-accent-glow: rgba(201, 168, 76, 0.25);
+
+  --color-dark-bg: #0d0d0f;
+  --color-dark-bg2: #131316;
+  --color-dark-card: #18181c;
+  --color-dark-border: #2a2a30;
+
+  --color-light-bg: #faf7f2;
+  --color-light-bg2: #f2ede4;
+  --color-light-card: #ffffff;
+  --color-light-border: #e2d9cc;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-body: "DM Sans", sans-serif;
+
+  --animate-fadeUp: fadeUp 0.7s ease forwards;
+  --animate-fadeUp-1: fadeUp 0.7s 0.1s ease forwards;
+  --animate-fadeUp-2: fadeUp 0.7s 0.2s ease forwards;
+  --animate-fadeUp-3: fadeUp 0.7s 0.3s ease forwards;
+  --animate-fadeUp-4: fadeUp 0.7s 0.4s ease forwards;
+  --animate-fadeUp-5: fadeUp 0.7s 0.5s ease forwards;
+  --animate-fadeUp-8: fadeUp 0.7s 0.8s ease forwards;
+  --animate-scrollBar: scrollBar 1.5s ease infinite;
+
+  @keyframes fadeUp {
+    0%   { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollBar {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+    50%       { opacity: 1;   transform: scaleY(1); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #0d0d0f;
+  }
+  body {
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: #c9a84c; color: #0d0d0f; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2a2a30; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #c9a84c; }
+}
