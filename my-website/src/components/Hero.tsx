@@ -80,7 +80,7 @@ export default function Hero() {
 
         {/* Description */}
         <p className="text-[clamp(15px,1.5vw,18px)] text-gray-600 dark:text-gray-400 max-w-[600px] leading-relaxed mb-10 opacity-0 animate-fadeUp-3">
-          I build enterprise-grade financial systems, scalable platforms, and production-ready applications. Dual-degree engineer with a track record across fintech, defence, and government sectors.
+          I build enterprise-grade financial systems, scalable platforms, and production-ready applications. Dual-degree engineer with a track record across fintech, defence, and open-source.
         </p>
 
         {/* CTAs */}
@@ -109,7 +109,6 @@ export default function Hero() {
 
         <div className="flex flex-wrap gap-10 opacity-0 animate-fadeUp-5">
           {[
-            { value: '1M+',  label: 'Monthly Transactions' },
             { value: '3+',   label: 'Years Building' },
             { value: '9.45', label: 'CGPA / 10' },
             { value: '2nd',  label: 'Dept. GPA Rank' },

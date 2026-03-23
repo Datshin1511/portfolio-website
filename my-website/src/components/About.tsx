@@ -22,7 +22,7 @@ export default function About() {
               <span className="text-accent">Builder by instinct.</span>
             </h2>
             <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-4 text-[15px]">
-              I'm Datshin R — a dual-degree graduate from IIT BHU with a B.Tech in Biochemical Engineering & Biotechnology and an associate degree in Mathematics & Computing. I write production systems that handle real scale: financial platforms processing over a million transactions monthly, applications deployed for government events serving 10,000+ users.
+              I'm Datshin Rajesh — a dual-degree graduate from IIT BHU with a B.Tech in Biochemical Engineering & Biotechnology and an associate degree in Mathematics & Computing. I write production systems that handle real scale: financial platforms processing over a million transactions monthly, applications deployed for government events serving 10,000+ users.
             </p>
             <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-[15px]">
               Currently at Sciforn in Pune as SDE-I, I design and own fintech modules — supply chain finance, deposit products, IFRS staging, regulatory workflows, and balance sheet generation — for global banking clients. I've stepped into interim team lead roles and work directly with international stakeholders.
