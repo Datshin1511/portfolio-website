@@ -6,17 +6,26 @@ const projects = [
     subtitle: 'Google Summer of Code 2023 · Liquid Galaxy',
     period: 'Jan 2023 – Apr 2023',
     description: 'Mobile dashboard for a smart city initiative, integrating 10+ real-time APIs with data visualization on Google Earth via KML. Built an emergency SoS module delivering instant alerts to 10,000+ users.',
-    highlights: ['98% reliability', '15.83% latency reduction', '10+ API integrations', '10K+ users'],
-    tags: ['Mobile', 'Google Earth', 'KML', 'Real-time APIs', 'GSoC'],
+    highlights: ['98% reliability', '15.83% latency reduction', '10+ API integrations'],
+    tags: ['Mobile', 'Google Earth', 'KML', 'Real-time APIs', 'GSoC - Pre contributor'],
     github: 'https://www.github.com/Datshin1511',
   },
+  {
+    title: 'Multilingual note taking agent',
+    subtitle: 'Holon AI · Hackathon',
+    period: 'Apr 2025 – May 2025',
+    description: 'AI-powered note taking agent, that uses various available open-source models to transcribe audio to text in multiple global languages. Light-weight, client-side transcriber focused on privacy.',
+    highlights: ['92% reliability', '15+ global languages', '5+ API integrations'],
+    tags: ['Web', 'Whisper', 'React', 'FastAPI', 'Holon AI'],
+    github: 'https://www.github.com/Datshin1511',
+  }
 ];
 
 export default function Projects() {
   return (
     <section id="projects" className="bg-light-bg2 dark:bg-dark-bg2 border-y border-light-border dark:border-dark-border">
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">// what i've shipped</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">what i've shipped ?</p>
         <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 dark:text-gray-50 leading-tight mb-12">
           Projects
         </h2>
@@ -66,7 +75,7 @@ export default function Projects() {
             GitHub →
           </a>
         </p>
-      </div>
+      </div>      
     </section>
   );
 }

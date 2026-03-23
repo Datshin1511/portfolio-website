@@ -64,7 +64,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
 
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">
-          // tools of the trade
+          Tools of the trade
         </p>
         <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 dark:text-gray-50 leading-tight mb-12">
           Skills

@@ -13,7 +13,7 @@ export default function About() {
   return (
     <section id="about" className="bg-light-bg2 dark:bg-dark-bg2 border-y border-light-border dark:border-dark-border">
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">// who i am</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">who am I ?</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>

@@ -7,7 +7,7 @@ export default function Contact() {
     <section id="contact" className="bg-light-bg dark:bg-dark-bg transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
         <div className="max-w-2xl mx-auto text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">// let's talk</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">let's talk</p>
         <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 dark:text-gray-50 leading-tight mb-4">
           Open to the<br />
           <span className="text-accent">right opportunity.</span>

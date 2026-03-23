@@ -30,7 +30,7 @@ const jobs = [
     company: 'Ministry of Defence, Govt. of India',
     location: 'New Delhi, India',
     period: 'Dec 2022 – Feb 2023',
-    tag: 'Contract',
+    tag: 'Internship',
     bullets: [
       'Developed a production-grade application for Aero India 2023 serving 10,000+ attendees, with robust API integrations and optimized UI architecture.',
       'Implemented secure auth and rate-limiting, reducing brute-force and OTP abuse by 30%; integrated real-time notification services via RESTful APIs.',
@@ -43,7 +43,7 @@ export default function Experience() {
   return (
     <section id="experience" className="bg-light-bg dark:bg-dark-bg transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">// where i've worked</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">where i've worked ?</p>
         <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 dark:text-gray-50 leading-tight mb-12">
           Experience
         </h2>

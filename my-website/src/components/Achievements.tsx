@@ -4,7 +4,7 @@ const achievements = [
   { rank: 'Top 3.4%', title: 'CDSE (I) 2025 — UPSC', detail: 'Qualified among 8,516 out of 250,000+ applicants' },
   { rank: 'AIR 4439', title: 'NDA/NA (I) 2019 — UPSC', detail: 'All India Rank in national defence entrance exam' },
   { rank: 'Rank 1340', title: 'TNEA 2020', detail: 'Tamil Nadu Engineering Admission state rank' },
-  { rank: '2nd Dept.', title: 'IIT BHU Academic', detail: 'Graduated CGPA 9.45/10, ranked 2nd in department' },
+  { rank: 'Dept. 2nd', title: 'IIT BHU Academic', detail: 'Graduated CGPA 9.45/10, ranked 2nd in department' },
 ];
 
 const leadership = [
@@ -24,7 +24,7 @@ export default function Achievements() {
   return (
     <section id="achievements" className="bg-light-bg2 dark:bg-dark-bg2 border-y border-light-border dark:border-dark-border">
       <div className="max-w-6xl mx-auto px-5 sm:px-10 lg:px-20 py-20 lg:py-28">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">// recognition & leadership</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-3">recognition & leadership</p>
         <h2 className="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-gray-900 dark:text-gray-50 leading-tight mb-12">
           Achievements
         </h2>
@@ -41,7 +41,7 @@ export default function Achievements() {
           ))}
         </div>
 
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-6">// leadership</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent mb-6">leadership</p>
         <div className="flex flex-col divide-y divide-light-border dark:divide-dark-border">
           {leadership.map((l, i) => (
             <div key={i} className="flex flex-col sm:grid sm:grid-cols-[220px_1fr] gap-3 sm:gap-8 py-7">
