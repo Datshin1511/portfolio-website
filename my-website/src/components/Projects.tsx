@@ -8,16 +8,16 @@ const projects = [
     description: 'Mobile dashboard for a smart city initiative, integrating 10+ real-time APIs with data visualization on Google Earth via KML. Built an emergency SoS module delivering instant alerts to 10,000+ users.',
     highlights: ['98% reliability', '15.83% latency reduction', '10+ API integrations'],
     tags: ['Mobile', 'Google Earth', 'KML', 'Real-time APIs', 'GSoC - Pre contributor'],
-    github: 'https://www.github.com/Datshin1511',
+    github: 'https://github.com/Datshin1511/lg_smart_city_dashboard',
   },
   {
     title: 'Multilingual note taking agent',
     subtitle: 'Holon AI · Hackathon',
     period: 'Apr 2025 – May 2025',
     description: 'AI-powered note taking agent, that uses various available open-source models to transcribe audio to text in multiple global languages. Light-weight, client-side transcriber focused on privacy.',
-    highlights: ['92% reliability', '15+ global languages', '5+ API integrations'],
+    highlights: ['92.3% reliability', '10+ global languages', '5+ API integrations'],
     tags: ['Web', 'Whisper', 'React', 'FastAPI', 'Holon AI'],
-    github: 'https://www.github.com/Datshin1511',
+    github: 'https://github.com/Datshin1511/multilingual-notes-agent',
   }
 ];
 
