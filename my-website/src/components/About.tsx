@@ -5,7 +5,7 @@ export default function About() {
     { icon: <Briefcase size={13} />, label: 'Current Role', value: 'SDE-I @ Sciforn, Pune' },
     { icon: <GraduationCap size={13} />, label: 'Education', value: 'IIT BHU — B.Tech + Associate Degree' },
     { icon: <GraduationCap size={13} />, label: 'CGPA', value: '9.45 / 10 · 2nd in Department' },
-    { icon: <Briefcase size={13} />, label: 'Domains', value: 'Fintech · Defence · Government · Open Source' },
+    { icon: <Briefcase size={13} />, label: 'Domains', value: 'Fintech · AI/ML · Open Source' },
     { icon: <MapPin size={13} />, label: 'Location', value: 'Chennai, India' },
     { icon: <Mail size={13} />, label: 'Email', value: 'datshinr2002@gmail.com' },
   ];

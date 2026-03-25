@@ -4,13 +4,20 @@ const runParticleEngine = () => {
 
     const ctx = canvas.getContext('2d');
 
-    let particles = [];
     let width, height, centerX, centerY;
+    let layers = [];
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
+    let mouseX = null;
+    let mouseY = null;
 
-    const ABSORB_RADIUS = 40;
+    const LAYER_CONFIG = [
+        { count: 60, speed: 0.4, size: 0.6 },
+        { count: 50, speed: 0.7, size: 0.9 },
+        { count: 40, speed: 1.1, size: 1.2 }
+    ];
+
+    const MAX_DIST = 100;
+    const MOUSE_RADIUS = 130;
 
     const setCanvasSize = () => {
         width = window.innerWidth;
@@ -26,107 +33,136 @@ const runParticleEngine = () => {
     };
 
     class Particle {
-        constructor() {
+        constructor(layer) {
+            this.layer = layer;
             this.init();
         }
 
         init() {
-            // spawn far away
-            const angle = Math.random() * Math.PI * 2;
-            const radius = 2000 + Math.random() * 1500;
+            // spawn randomly across screen
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
 
-            this.x = Math.cos(angle) * radius;
-            this.y = Math.sin(angle) * radius;
-            this.z = Math.random() * 2000 + 500;
+            this.size = this.layer.size;
 
-            this.vx = 0;
-            this.vy = 0;
-
-            this.size = Math.random() * 1.5 + 0.5;
+            // depth factor (fake perspective)
+            this.z = Math.random() * 1 + 0.2;
         }
 
         update() {
-            this.z -= 2.2;
+            // vector from center (viewer POV)
+            let dx = this.x - centerX;
+            let dy = this.y - centerY;
 
-            const k = 800 / this.z;
-            const px = this.x * k + centerX;
-            const py = this.y * k + centerY;
+            let dist = Math.sqrt(dx * dx + dy * dy) + 0.001;
 
-            const dx = mouseX - px;
-            const dy = mouseY - py;
-            const dist = Math.sqrt(dx * dx + dy * dy) + 0.001;
+            // normalize
+            dx /= dist;
+            dy /= dist;
 
-            // 🚨 absorb
-            if (dist < ABSORB_RADIUS) {
-                this.init();
-                return;
-            }
+            // move outward (towards edges)
+            this.x += dx * this.layer.speed * this.z * 2;
+            this.y += dy * this.layer.speed * this.z * 2;
 
-            // ✅ FIXED FORCE MODEL (VISIBLE)
-            const force = 0.05 + (120 / dist); // strong far + stronger near
+            // increase "depth"
+            this.z += 0.01;
 
-            this.vx += (dx / dist) * force * (this.z / 1200);
-            this.vy += (dy / dist) * force * (this.z / 1200);
-
-            this.vx *= 0.96;
-            this.vy *= 0.96;
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            if (this.z <= 0) {
-                this.init();
+            // if out of screen → respawn near center (like new incoming particles)
+            if (
+                this.x < -50 || this.x > width + 50 ||
+                this.y < -50 || this.y > height + 50
+            ) {
+                this.x = centerX + (Math.random() - 0.5) * 100;
+                this.y = centerY + (Math.random() - 0.5) * 100;
+                this.z = 0.2;
             }
         }
 
         draw() {
-            const k = 800 / this.z;
-            const px = this.x * k + centerX;
-            const py = this.y * k + centerY;
+            const opacity = Math.min(0.4, this.z * 0.4);
 
-            if (px >= 0 && px <= width && py >= 0 && py <= height) {
-                const opacity = Math.min(1, (1000 / this.z) * 0.7);
-
-                ctx.fillStyle = `rgba(255,255,255,${opacity})`;
-                ctx.beginPath();
-                ctx.arc(px, py, this.size * k, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size * this.z, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
 
     function initParticles() {
-        particles = [];
-        for (let i = 0; i < 600; i++) {
-            particles.push(new Particle());
-        }
+        layers = [];
+
+        LAYER_CONFIG.forEach(cfg => {
+            const arr = [];
+            for (let i = 0; i < cfg.count; i++) {
+                arr.push(new Particle(cfg));
+            }
+            layers.push(arr);
+        });
     }
 
-    function drawBlackHole() {
-        // subtle glow so you SEE the center
-        const gradient = ctx.createRadialGradient(
-            mouseX, mouseY, 0,
-            mouseX, mouseY, 80
-        );
+    function drawConnections() {
+        layers.forEach(layer => {
+            for (let i = 0; i < layer.length; i++) {
+                for (let j = i + 1; j < layer.length; j++) {
+                    const dx = layer[i].x - layer[j].x;
+                    const dy = layer[i].y - layer[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-        gradient.addColorStop(0, "rgba(255,255,255,0.15)");
-        gradient.addColorStop(1, "rgba(255,255,255,0)");
+                    if (dist < MAX_DIST) {
+                        const opacity = (1 - dist / MAX_DIST) * 0.12;
 
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(mouseX, mouseY, 80, 0, Math.PI * 2);
-        ctx.fill();
+                        ctx.strokeStyle = `rgba(200,220,255,${opacity})`;
+                        ctx.lineWidth = 0.7;
+
+                        ctx.beginPath();
+                        ctx.moveTo(layer[i].x, layer[i].y);
+                        ctx.lineTo(layer[j].x, layer[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        });
+    }
+
+    function drawMouseConnections() {
+        if (mouseX === null) return;
+
+        layers.flat().forEach(p => {
+            const dx = p.x - mouseX;
+            const dy = p.y - mouseY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < MOUSE_RADIUS) {
+                const opacity = (1 - dist / MOUSE_RADIUS) * 0.2;
+
+                ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
+                ctx.lineWidth = 0.9;
+
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(mouseX, mouseY);
+                ctx.stroke();
+
+                ctx.fillStyle = `rgba(255,255,255,${opacity + 0.2})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
     }
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        particles.forEach(p => {
-            p.update();
-            p.draw();
+        layers.forEach(layer => {
+            layer.forEach(p => {
+                p.update();
+                p.draw();
+            });
         });
 
-        drawBlackHole();
+        drawConnections();
+        drawMouseConnections();
 
         requestAnimationFrame(animate);
     }
@@ -136,9 +172,9 @@ const runParticleEngine = () => {
         mouseY = e.clientY;
     });
 
-    window.addEventListener('touchmove', (e) => {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
+    window.addEventListener('mouseleave', () => {
+        mouseX = null;
+        mouseY = null;
     });
 
     window.addEventListener('resize', setCanvasSize);
@@ -147,7 +183,6 @@ const runParticleEngine = () => {
     animate();
 };
 
-// React-safe start
 const startCheck = setInterval(() => {
     if (document.getElementById('particle-canvas')) {
         runParticleEngine();
